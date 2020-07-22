@@ -1,11 +1,14 @@
 package com.ti89.mecanica.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Cliente  implements Serializable{
@@ -23,7 +26,10 @@ public class Cliente  implements Serializable{
 	private String telefone;
 	private String celular;
 	private String email;
-	//private List<Veiculo> veiculos;
+	@OneToMany(mappedBy="cliente")
+	
+	private List<Veiculo> veiculos= new ArrayList<>();
+	
 	
 	public Cliente() {
 		
@@ -102,6 +108,12 @@ public class Cliente  implements Serializable{
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+	public List<Veiculo> getVeiculos() {
+		return veiculos;
+	}
+	public void setVeiculos(List<Veiculo> veiculos) {
+		this.veiculos = veiculos;
 	}
 	
 	

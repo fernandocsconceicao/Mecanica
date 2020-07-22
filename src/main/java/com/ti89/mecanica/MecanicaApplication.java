@@ -30,9 +30,8 @@ public class MecanicaApplication implements CommandLineRunner{
 	Cliente cli1= new Cliente(null, "Fernando", "547935703497",null,"969644235", "teste", "fernando@bol.com");
 	Cliente cli2= new Cliente(null, "Marcia", "87435703497",null,"318644235", "teste", "marcia@bol.com");
 	
-//	Veiculo v1 = new Veiculo(null, "Hb20", "Branco", "Hyundai",TipoVeiculo.CARRO , "carro com 3 portas", cli1);
-//	Veiculo v2 = new Veiculo(null, "V10", "Branco", "Volto",TipoVeiculo.CAMINHAO , "carro com 3 portas", cli2);
-	
+	//(Integer id, String modelo, String cor, String marca, String tipoVeiculo, String detalhes)
+
 	
 	
 	
