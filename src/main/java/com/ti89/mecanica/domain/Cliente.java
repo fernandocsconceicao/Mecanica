@@ -31,6 +31,8 @@ public class Cliente  implements Serializable{
 	@OneToMany(mappedBy="cliente")
 	
 	private List<Veiculo> veiculos= new ArrayList<>();
+	@OneToMany(mappedBy="cliente")
+	private List<Visita> visitas= new ArrayList<>();
 	
 	
 	public Cliente() {
@@ -47,6 +49,12 @@ public class Cliente  implements Serializable{
 		this.email = email;
 	}
 
+	public List<Visita> getVisitas() {
+		return visitas;
+	}
+	public void setVisitas(List<Visita> visita) {
+		this.visitas = visita;
+	}
 	public Integer getId() {
 		return id;
 	}

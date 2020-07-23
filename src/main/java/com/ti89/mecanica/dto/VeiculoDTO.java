@@ -7,6 +7,10 @@ import com.ti89.mecanica.domain.Veiculo;
 public class VeiculoDTO implements Serializable{
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String modelo;
 	private String cor;

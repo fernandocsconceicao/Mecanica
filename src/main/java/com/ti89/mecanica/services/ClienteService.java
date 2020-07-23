@@ -64,6 +64,7 @@ public class ClienteService {
 	public Cliente fromDTO(ClienteDTO objDto) {
 		return new Cliente(objDto.getId(), objDto.getNome(),objDto.getCpf(),objDto.getCnpj(),objDto.getTelefone(),objDto.getCelular(),objDto.getEmail());
 	}
+
 	
 	private void updateData(Cliente newObj, Cliente obj) {
 		newObj.setNome(obj.getNome());

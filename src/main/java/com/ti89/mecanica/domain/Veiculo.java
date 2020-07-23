@@ -1,6 +1,8 @@
 package com.ti89.mecanica.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -29,6 +32,8 @@ public class Veiculo implements Serializable{
 	@JoinColumn( name= "cliente_id")
 	private Cliente cliente;
 	private String detalhes;
+	@OneToMany(mappedBy="veiculo")
+	private List<Visita> visitas= new ArrayList<>();
 	
 	
 	public Veiculo() {	
@@ -58,6 +63,16 @@ public class Veiculo implements Serializable{
 		
 	}
 	
+	public List<Visita> getVisitas() {
+		return visitas;
+	}
+
+
+	public void setVisitas(List<Visita> visitas) {
+		this.visitas = visitas;
+	}
+
+
 	public Integer getId() {
 		return id;
 	}
