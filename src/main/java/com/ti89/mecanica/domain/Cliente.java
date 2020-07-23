@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,6 +26,7 @@ public class Cliente  implements Serializable{
 	private String cnpj;
 	private String telefone;
 	private String celular;
+	@Column(unique=true)
 	private String email;
 	@OneToMany(mappedBy="cliente")
 	
@@ -44,6 +46,7 @@ public class Cliente  implements Serializable{
 		this.celular = celular;
 		this.email = email;
 	}
+
 	public Integer getId() {
 		return id;
 	}

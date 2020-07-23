@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Veiculo implements Serializable{
 	/**
@@ -22,6 +24,7 @@ public class Veiculo implements Serializable{
 	private String cor;
 	private String marca;
 	private String tipoVeiculo;
+	@JsonIgnore
 	@ManyToOne 
 	@JoinColumn( name= "cliente_id")
 	private Cliente cliente;
@@ -44,7 +47,17 @@ public class Veiculo implements Serializable{
 		this.setCliente(cliente);
 	}
 
-
+	public Veiculo(Integer id, String modelo, String cor, String marca, String tipoVeiculo, String detalhes) {
+		super();
+		this.id = id;
+		this.modelo = modelo;
+		this.cor = cor;
+		this.marca = marca;
+		this.tipoVeiculo = tipoVeiculo;
+		this.detalhes = detalhes;
+		
+	}
+	
 	public Integer getId() {
 		return id;
 	}

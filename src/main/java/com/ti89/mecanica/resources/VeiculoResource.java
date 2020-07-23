@@ -17,27 +17,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.ti89.mecanica.domain.Cliente;
-import com.ti89.mecanica.dto.ClienteDTO;
-import com.ti89.mecanica.services.ClienteService;
+import com.ti89.mecanica.domain.Veiculo;
+import com.ti89.mecanica.dto.VeiculoDTO;
+import com.ti89.mecanica.services.VeiculoService;
 
 @RestController
-@RequestMapping(value= "/clientes")
-	public class ClienteResource {
+@RequestMapping(value= "/veiculos")
+	public class VeiculoResource {
 	
 		@Autowired
-		private ClienteService service;
+		private VeiculoService service;
 		
-//		@RequestMapping( method= RequestMethod.GET)
-//		public ResponseEntity<List<Cliente>> list() {
-//			List<Cliente> lista = service.listar();
-//			
-//		
-//		return ResponseEntity.ok().body(lista);
-//	}
+
 		@RequestMapping(value="/{id}", method=RequestMethod.GET)
-		public ResponseEntity<Cliente> find(@PathVariable Integer id) {
-			Cliente obj = service.find(id);
+		public ResponseEntity<Veiculo> find(@PathVariable Integer id) {
+			Veiculo obj = service.find(id);
 			return ResponseEntity.ok().body(obj);
 		}
 		
@@ -45,8 +39,8 @@ import com.ti89.mecanica.services.ClienteService;
 		
 			
 			@RequestMapping(method=RequestMethod.POST)
-			public ResponseEntity<Void> insert(@Valid @RequestBody ClienteDTO objDto) {
-				Cliente obj = service.fromDTO(objDto);
+			public ResponseEntity<Void> insert(@Valid @RequestBody VeiculoDTO objDto) {
+				Veiculo obj = service.fromDTO(objDto);
 				obj = service.insert(obj);
 				URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 					.path("/{id}").buildAndExpand(obj.getId()).toUri();
@@ -54,8 +48,8 @@ import com.ti89.mecanica.services.ClienteService;
 			}
 			
 			@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-			public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO objDto, @PathVariable Integer id) {
-				Cliente obj = service.fromDTO(objDto);
+			public ResponseEntity<Void> update(@Valid @RequestBody VeiculoDTO objDto, @PathVariable Integer id) {
+				Veiculo obj = service.fromDTO(objDto);
 				obj.setId(id);
 				obj = service.update(obj);
 				return ResponseEntity.noContent().build();
@@ -68,30 +62,24 @@ import com.ti89.mecanica.services.ClienteService;
 			}
 			
 			@RequestMapping(method=RequestMethod.GET)
-			public ResponseEntity<List<ClienteDTO>> findAll() {
-				List<Cliente> list = service.findAll();
-				List<ClienteDTO> listDto = list.stream().map(obj -> new ClienteDTO(obj)).collect(Collectors.toList());  
+			public ResponseEntity<List<VeiculoDTO>> findAll() {
+				List<Veiculo> list = service.findAll();
+				List<VeiculoDTO> listDto = list.stream().map(obj -> new VeiculoDTO(obj)).collect(Collectors.toList());  
 				return ResponseEntity.ok().body(listDto);
 			}
 			
 			@RequestMapping(value="/page", method=RequestMethod.GET)
-			public ResponseEntity<Page<ClienteDTO>> findPage(
+			public ResponseEntity<Page<VeiculoDTO>> findPage(
 					@RequestParam(value="page", defaultValue="0") Integer page, 
 					@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage, 
 					@RequestParam(value="orderBy", defaultValue="nome") String orderBy, 
 					@RequestParam(value="direction", defaultValue="ASC") String direction) {
-				Page<Cliente> list = service.findPage(page, linesPerPage, orderBy, direction);
-				Page<ClienteDTO> listDto = list.map(obj -> new ClienteDTO(obj));  
+				Page<Veiculo> list = service.findPage(page, linesPerPage, orderBy, direction);
+				Page<VeiculoDTO> listDto = list.map(obj -> new VeiculoDTO(obj));  
 				return ResponseEntity.ok().body(listDto);
 			}
 		
 
-//	@RequestMapping(method=RequestMethod.GET)
-//	public ResponseEntity<List<ClienteDTO>> findAll() {
-//		List<Cliente> list = service.findAll();
-//		List<ClienteDTO> listDto = list.stream().map(obj -> new ClienteDTO(obj)).collect(Collectors.toList());  
-//		return ResponseEntity.ok().body(listDto);
-//	}
 
 
 }
