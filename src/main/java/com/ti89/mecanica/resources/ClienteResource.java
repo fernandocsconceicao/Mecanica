@@ -19,7 +19,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.ti89.mecanica.domain.Cliente;
 import com.ti89.mecanica.dto.ClienteDTO;
-import com.ti89.mecanica.dto.ClienteVisitasDTO;
 import com.ti89.mecanica.services.ClienteService;
 
 @RestController

@@ -78,6 +78,21 @@ import com.ti89.mecanica.services.VisitaService;
 				Page<VisitaDTO> listDto = list.map(obj -> new VisitaDTO(obj));  
 				return ResponseEntity.ok().body(listDto);
 			}
+			
+//			@RequestMapping( value="/cliente/{id}",method=RequestMethod.GET)
+//			public ResponseEntity<Page<VisitaDTO>> findPageByCli(
+//					@PathVariable(value="idCliente") Integer idCli,
+//					@RequestParam(value="page", defaultValue="0") Integer page, 
+//					@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage, 
+//					@RequestParam(value="orderBy", defaultValue="nome") String orderBy, 
+//					@RequestParam(value="direction", defaultValue="ASC") String direction) {
+//				
+//				Page<Visita> list = service.listByCli(idCli, page, linesPerPage, orderBy, direction);
+//				Page<VisitaDTO> listDto = list.map(obj -> new VisitaDTO(obj));  
+//				
+//				return ResponseEntity.ok().body(listDto);
+//			}
+		
 		
 
 

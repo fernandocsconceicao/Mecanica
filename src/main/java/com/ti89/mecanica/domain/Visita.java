@@ -26,7 +26,8 @@ public class Visita implements Serializable{
 	private Integer id;
 	@JsonIgnore
 	@ManyToOne 
-	@JoinColumn( name= "cliente_id")
+	@JoinColumn( name= "clienteId")
+	//private Cliente cliente;
 	private Cliente cliente;
 	@JsonIgnore
 	@ManyToOne 

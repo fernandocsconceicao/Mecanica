@@ -14,14 +14,17 @@ import com.ti89.cursomc.services.exceptions.DataIntegrityException;
 import com.ti89.cursomc.services.exceptions.ObjectNotFoundException;
 import com.ti89.mecanica.domain.Visita;
 import com.ti89.mecanica.dto.VisitaDTO;
+import com.ti89.mecanica.repositories.ClienteRepository;
 import com.ti89.mecanica.repositories.VisitaRepository;
 
 
 @Service
 public class VisitaService {
 	@Autowired
-	VisitaRepository repo;
-
+	private	VisitaRepository repo;
+	
+	@Autowired
+	private ClienteRepository clienteRepository;
 	
 	
 	
@@ -73,21 +76,17 @@ public class VisitaService {
 		newObj.setEstadoPagamento(obj.isEstadoPagamento());
 		newObj.setDetalhes(obj.getDetalhes());
 	
-}
-//	public Visita fromDTO(VisitaDTO objDto) {
-//		return new Visita(objDto.getId(), objDto.getNome());
+	}
+	
+//	public Page<Visita> listByCli (Integer idCli,Integer page, Integer linesPerPage, String orderBy, String direction) {
+//		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+//		Integer idCliente=(clienteRepository.findById(idCli).get().getId());
+//		
+//		
+//		return (Page<Visita>) repo.findByIdcliente(idCliente);
 //	}
+	
 
-	
-		
-	
-//	public Visita find(Integer id) {
-//		 Optional<Visita> obj = repo.findById(id);
-//		return obj.orElse(null);
-//		} 
-//
-//	
-	
 
 
 }
