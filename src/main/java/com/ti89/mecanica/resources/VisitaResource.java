@@ -21,8 +21,13 @@ import com.ti89.mecanica.domain.Visita;
 import com.ti89.mecanica.dto.VisitaDTO;
 import com.ti89.mecanica.services.VisitaService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping(value= "/visitas")
+@Api(value="Api REST Veiculo")
+
 	public class VisitaResource {
 	
 		@Autowired
@@ -30,6 +35,8 @@ import com.ti89.mecanica.services.VisitaService;
 		
 
 		@RequestMapping(value="/{id}", method=RequestMethod.GET)
+		@ApiOperation( value="retorna a visita identificado pelo id fornecido")
+
 		public ResponseEntity<Visita> find(@PathVariable Integer id) {
 			Visita obj = service.find(id);
 			return ResponseEntity.ok().body(obj);
@@ -39,6 +46,7 @@ import com.ti89.mecanica.services.VisitaService;
 		
 			
 			@RequestMapping(method=RequestMethod.POST)
+			@ApiOperation( value="Insere uma visita  com os dados fornecidos em um body Json ")
 			public ResponseEntity<Void> insert(@Valid @RequestBody VisitaDTO objDto) {
 				Visita obj = service.fromDTO(objDto);
 				obj = service.insert(obj);
@@ -48,6 +56,8 @@ import com.ti89.mecanica.services.VisitaService;
 			}
 			
 			@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+			@ApiOperation( value="Atualiza uma visita identificado pelo id no banco de dados com os dados fornecidos em um body Json")
+
 			public ResponseEntity<Void> update(@Valid @RequestBody VisitaDTO objDto, @PathVariable Integer id) {
 				Visita obj = service.fromDTO(objDto);
 				obj.setId(id);
@@ -56,12 +66,16 @@ import com.ti89.mecanica.services.VisitaService;
 			}
 			
 			@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+			@ApiOperation( value="Deleta uma visita identificado pelo id")
+
 			public ResponseEntity<Void> delete(@PathVariable Integer id) {
 				service.delete(id);
 				return ResponseEntity.noContent().build();
 			}
 			
 			@RequestMapping(method=RequestMethod.GET)
+			@ApiOperation( value="Lista todos as visitas existentes")
+
 			public ResponseEntity<List<VisitaDTO>> findAll() {
 				List<Visita> list = service.findAll();
 				List<VisitaDTO> listDto = list.stream().map(obj -> new VisitaDTO(obj)).collect(Collectors.toList());  
@@ -69,6 +83,11 @@ import com.ti89.mecanica.services.VisitaService;
 			}
 			
 			@RequestMapping(value="/page", method=RequestMethod.GET)
+			@ApiOperation( value="Retorna todos as visitas de forma paginada,"
+					+ " configurado com os atributos int page,"
+					+ " int linesPerPage,"
+					+ " String orderBy,"
+					+ " String direction")
 			public ResponseEntity<Page<VisitaDTO>> findPage(
 					@RequestParam(value="page", defaultValue="0") Integer page, 
 					@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage, 
@@ -79,19 +98,7 @@ import com.ti89.mecanica.services.VisitaService;
 				return ResponseEntity.ok().body(listDto);
 			}
 			
-//			@RequestMapping( value="/cliente/{id}",method=RequestMethod.GET)
-//			public ResponseEntity<Page<VisitaDTO>> findPageByCli(
-//					@PathVariable(value="idCliente") Integer idCli,
-//					@RequestParam(value="page", defaultValue="0") Integer page, 
-//					@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage, 
-//					@RequestParam(value="orderBy", defaultValue="nome") String orderBy, 
-//					@RequestParam(value="direction", defaultValue="ASC") String direction) {
-//				
-//				Page<Visita> list = service.listByCli(idCli, page, linesPerPage, orderBy, direction);
-//				Page<VisitaDTO> listDto = list.map(obj -> new VisitaDTO(obj));  
-//				
-//				return ResponseEntity.ok().body(listDto);
-//			}
+//		
 		
 		
 
